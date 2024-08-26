@@ -33,10 +33,7 @@ body {
   background: #fafafa;
   color: var(--header);
   font-family: var(--raleway);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.172), rgba(0, 0, 0, 0.172)),
-    url("/src/img/pexels-leeloothefirst-5791788.jpg");
-
-  background-image: linear-gradient(rgba(0, 0, 0, 0.172), rgba(0, 0, 0, 0.172)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url("https://images.unsplash.com/photo-1664399400336-e4cba73d6281?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 
   background-size: cover;
@@ -50,9 +47,10 @@ body {
   display: flex;
   flex-direction: column;
   /* width: 90%; */
-  padding: 2rem;
+  padding:3rem 2rem;
   align-items: center;
   margin: auto;
+  overflow: hidden;
   gap: 1.5rem;
 }
 
@@ -88,6 +86,7 @@ body {
   border: none;
   background: var(--form-bg);
   display: block;
+  transition: outline 800ms ease;
 }
 
 .options {
@@ -103,6 +102,7 @@ body {
   display: block;
   letter-spacing: 1px;
   z-index: 1;
+  transition: outline 800ms ease;
 }
 
 .select-icon,
@@ -136,8 +136,9 @@ body {
   z-index: 1;
 }
 
-
 .input:focus,
 .options:focus {
-  outline: none;
+  outline: 3px groove var(--form-color);
 }
+
+/* add media queries */
