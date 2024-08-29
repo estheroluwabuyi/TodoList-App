@@ -168,20 +168,21 @@ body {
   width: 80%;
   display: grid;
   margin: auto;
-  /* margin: auto;
-  display: flex; */
-  /* justify-content: space-between; */
   padding: 1.3rem 2rem;
   align-items: center;
   grid-template-columns: 2fr 1fr;
   border-radius: 10px;
-  /* height: 5.5rem; */
   margin-top: 2rem;
+}
+
+.delBtn {
+  opacity: 0;
+  transform: rotate(5deg);
+  transition: all 1s ease-in;
 }
 
 .todo-list-list__texts {
   font-size: 2rem;
-  /* background: royalblue; */
   padding: 0.3rem;
   border: none;
   overflow: hidden;

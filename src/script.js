@@ -55,8 +55,9 @@ todoList.addEventListener("click", function (e) {
     todoListList.classList.toggle("transparent");
     editBtn.classList.toggle("hide");
     todoItemText.contentEditable = "false";
-    editBtn.classList.remove("bookmarkColor");
     checkBtn.classList.toggle("borderRadius");
+    iconEl.setAttribute("name", "create-outline");
+    editBtn.classList.remove("bookmarkColor");
 
     if (todoItemText.textContent.trim() === "") {
       todoItemText.classList.remove("strikeText");
@@ -94,9 +95,12 @@ todoList.addEventListener("click", function (e) {
   }
 
   if (target.closest(".btn-3")) {
-    todoListList.remove();
-    // todoListList.classList.add("hide"); wont work because its still in the DOM
-    storeCode();
+    todoListList.classList.add("delBtn");
+
+    setTimeout(() => {
+      todoListList.remove(); // todoListList.classList.add("hide"); wont work because its
+      storeCode();
+    }, 700);
   }
 });
 
