@@ -39,7 +39,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right center;
-  height: 100vh;
+  min-height: 100vh;
   font-weight: 500;
 }
 
@@ -47,14 +47,14 @@ body {
   display: grid;
   place-items: center;
   width: 100%;
-  padding: 3rem 2rem;
+  padding: 2rem;
   align-items: center;
   overflow: hidden;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .todo-header {
-  font-size: clamp(3.5rem, 6.5vw, 7rem);
+  font-size: clamp(3.5rem, 10vw, 7rem);
   font-family: var(--raleway);
   font-weight: 900;
   letter-spacing: 3px;
@@ -163,37 +163,38 @@ body {
   outline: 3px groove var(--form-color);
 }
 
-/* .todo-list-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-} */
-
-.todo-list {
-  /* width: 100%; */
-  padding: 0.7rem 2rem;
-}
-
 .todo-list-list {
   background: var(--form-bg);
   width: 80%;
+  display: grid;
   margin: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.2rem 2rem;
+  /* margin: auto;
+  display: flex; */
+  /* justify-content: space-between; */
+  padding: 1.3rem 2rem;
   align-items: center;
+  grid-template-columns: 2fr 1fr;
   border-radius: 10px;
-  height: 5.5rem;
+  /* height: 5.5rem; */
+  margin-top: 2rem;
 }
 
 .todo-list-list__texts {
   font-size: 2rem;
+  /* background: royalblue; */
+  padding: 0.3rem;
+  border: none;
+  overflow: hidden;
+}
+
+.todo-list-list__texts[contenteditable="true"] {
+  outline: none;
 }
 
 .todo-list-list__btns {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-1 {
@@ -210,7 +211,7 @@ body {
   border-bottom-right-radius: 10px;
 }
 
-.bookmark {
+.bookmarkColor {
   background: var(--dark-green);
 }
 
@@ -224,4 +225,24 @@ body {
   color: white;
 }
 
+/* DOM manipulations */
+.strikeText {
+  text-decoration: line-through;
+}
+.transparent {
+  opacity: 0.6;
+}
+.todo-list-list {
+  transition: opacity 800ms ease;
+}
+
+.hide {
+  display: none;
+  pointer-events: none;
+}
+
+.borderRadius {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
 /* add media queries */

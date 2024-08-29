@@ -1,6 +1,9 @@
-const addTaskBtn = document.querySelector(".add-task-btn");
+"use strict";
+
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
+const selectOptionsBar = document.querySelector(".options");
+const selectOptionsBarInput = document.querySelectorAll(".select-icon");
 const todoList = document.querySelector(".todo-list");
 
 form.addEventListener("submit", function (e) {
@@ -9,92 +12,120 @@ form.addEventListener("submit", function (e) {
 });
 
 const getInputValue = function () {
-    const val = input.value;
-    if(!val) return;
-createTodoList(val);
-input.value = '';
-  console.log(val);
-
+  const val = input.value;
+  if (!val) return;
+  createTodoList(val);
+  input.value = "";
+  storeCode();
 };
-
-// addTaskBtn.addEventListener('click', getInputValue);
-// getInputValue();
 
 const createTodoList = function (todoText) {
+  const markup = `<div class="todo-list-list">
+          <p class="todo-list-list__texts" contenteditable="false">${todoText}</p>
 
-    // create li html element
-  const taskList = document.createElement("li");
-  taskList.textContent = todoText;
+          <div class="todo-list-list__btns">
+            <button class="btn-icons btn-1">
+              <ion-icon name="create-outline">
+              </ion-icon>
+            </button>
 
-  // create button html element
-  const removeTaskBtn = document.createElement("button");
-  removeTaskBtn.textContent = "Remove";
+            <button class="btn-icons btn-2">
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </button>
 
-  // adding class to the created li and btn
-  taskList.setAttribute('class', 'task-li');
-  removeTaskBtn.setAttribute('class', 'remove-task-btn');
-
-//   removeTaskBtn.addEventListener('click', function() {
-//     todoList.removeChild(taskList);
-// });
-
-  // adding the created li to html ul as a child
-  todoList.appendChild(taskList);
-
-  //adding the created btn to html li as a child
-  taskList.appendChild(removeTaskBtn);
-
-  console.log(todoList);
-  
+            <button class="btn-icons btn-3">
+              <ion-icon name="trash-bin-outline"></ion-icon>
+            </button>
+          </div>
+        </div>`;
+  todoList.insertAdjacentHTML("beforeend", markup);
 };
 
+todoList.addEventListener("click", function (e) {
+  const target = e.target;
+  const todoListList = target.closest(".todo-list-list");
+  const todoItemText = todoListList.querySelector(".todo-list-list__texts");
+  const editBtn = todoListList.querySelector(".btn-1");
+  const checkBtn = todoListList.querySelector(".btn-2");
+  const deleteBtn = todoListList.querySelector(".btn-3");
+  const iconEl = editBtn.querySelector("ion-icon");
 
+  if (target.closest(".btn-2")) {
+    todoItemText.classList.toggle("strikeText");
+    todoListList.classList.toggle("transparent");
+    editBtn.classList.toggle("hide");
+    todoItemText.contentEditable = "false";
+    editBtn.classList.remove("bookmarkColor");
+    checkBtn.classList.toggle("borderRadius");
 
-/*
+    if (todoItemText.textContent.trim() === "") {
+      todoItemText.classList.remove("strikeText");
+      todoListList.classList.remove("transparent");
+      editBtn.classList.remove("hide");
+      editBtn.classList.remove("bookmarkColor");
+      todoItemText.contentEditable = "true";
+      checkBtn.classList.remove("borderRadius");
+      todoItemText.focus();
+    }
+    storeCode();
+  }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Text Example</title>
-</head>
-<body>
+  if (target.closest(".btn-1")) {
+    const isEditable = todoItemText.contentEditable === "true";
+    todoItemText.contentEditable = !isEditable;
+    todoItemText.focus();
 
-<div id="editableText" contenteditable="false">
-  This text is not editable by default. Click "Edit" to enable editing.
-</div>
-<button id="editBtn">Edit</button>
-<button id="saveBtn" style="display:none;">Save</button>
+    //to make the focus key be at the end of the input
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(todoItemText);
+    range.collapse(false);
+    selection.removeAllRanges();
+    selection.addRange(range);
 
-<script>
-  const editableText = document.getElementById('editableText');
-  const editBtn = document.getElementById('editBtn');
-  const saveBtn = document.getElementById('saveBtn');
+    if (todoItemText.contentEditable === "true") {
+      iconEl.setAttribute("name", "bookmark-outline");
+      editBtn.classList.add("bookmarkColor");
+    } else {
+      iconEl.setAttribute("name", "create-outline");
+      editBtn.classList.remove("bookmarkColor");
+    }
+    storeCode();
+  }
 
-  // Enable editing when the "Edit" button is clicked
-  editBtn.addEventListener('click', function() {
-    editableText.contentEditable = 'true';
-    editableText.focus();
-    editBtn.style.display = 'none';
-    saveBtn.style.display = 'inline';
-  });
+  if (target.closest(".btn-3")) {
+    todoListList.remove();
+    // todoListList.classList.add("hide"); wont work because its still in the DOM
+    storeCode();
+  }
+});
 
-  // Disable editing and potentially save the text when "Save" is clicked
-  saveBtn.addEventListener('click', function() {
-    editableText.contentEditable = 'false';
-    editBtn.style.display = 'inline';
-    saveBtn.style.display = 'none';
-    
-    // Optionally, you can save the edited text here
-    const editedText = editableText.textContent;
-    console.log('Saved text:', editedText);
-  });
-</script>
+// localStorage.clear();
 
-</body>
-</html>
+//LocalStorage
+function storeCode() {
+  // Collect all the todo items
+  const todoItems = Array.from(
+    todoList.querySelectorAll(".todo-list-list__texts")
+  ).map((item) => item.textContent);
 
+  // Store the items in localStorage
+  localStorage.setItem("todoList", JSON.stringify(todoItems));
+}
 
+function loadCode() {
+  // Get the stored items from localStorage
+  const storedItems = JSON.parse(localStorage.getItem("todoList"));
 
-*/
+  if (storedItems) {
+    // Clear the current list
+    todoList.innerHTML = "";
+
+    // Recreate the list from stored items
+    storedItems.forEach((itemText) => {
+      createTodoList(itemText);
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadCode);
