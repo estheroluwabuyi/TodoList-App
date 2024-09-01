@@ -264,7 +264,7 @@ body {
   }
 
   .select-icon {
-    width: 60%;
+    width: 65%;
     justify-self: center;
   }
   .options {
@@ -275,7 +275,7 @@ body {
 
   .input-btn,
   .option-btn {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 
   .todo-list-list {
