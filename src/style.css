@@ -251,7 +251,7 @@ body {
 /* Media Queries */
 @media (max-width: 500px) {
   .todo-header {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 3.5rem, 5rem);
   }
 
   .btn-input-container {
@@ -270,7 +270,6 @@ body {
   .options {
     height: 5rem;
     font-size: 1.3rem;
-    /* padding: 0.2rem 0.7rem; */
   }
 
   .input-btn,
