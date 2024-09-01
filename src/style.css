@@ -49,12 +49,13 @@ body {
   width: 100%;
   padding: 2rem;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   gap: 2rem;
 }
 
 .todo-header {
-  font-size: clamp(3.5rem, 10vw, 7rem);
+  /* font-size: clamp(3rem, 10vw, 7rem); */
+  font-size: 7rem;
   font-family: var(--raleway);
   font-weight: 900;
   letter-spacing: 3px;
@@ -246,4 +247,46 @@ body {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-/* add media queries */
+
+/* Media Queries */
+@media (max-width: 500px) {
+  .todo-header {
+    font-size: 2.5rem;
+  }
+
+  .btn-input-container {
+    grid-template-columns: 1fr;
+    width: 70%;
+  }
+  .input {
+    height: 5.5rem;
+    font-size: 1.3rem;
+  }
+
+  .select-icon {
+    width: 60%;
+    justify-self: center;
+  }
+  .options {
+    height: 4.5rem;
+    font-size: 1.3rem;
+    padding: 0.2rem 1rem;
+  }
+
+  .input-btn,
+  .option-btn {
+    font-size: 2rem;
+  }
+
+  .todo-list-list {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .todo-list-list__texts {
+    font-size: 1.7rem;
+  }
+
+  .btn-icons {
+    font-size: 1.7rem;
+  }
+}
