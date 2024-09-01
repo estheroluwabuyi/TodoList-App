@@ -256,7 +256,7 @@ body {
 
   .btn-input-container {
     grid-template-columns: 1fr;
-    width: 70%;
+    width: 80%;
   }
   .input {
     height: 5.5rem;
@@ -270,7 +270,7 @@ body {
   .options {
     height: 5rem;
     font-size: 1.3rem;
-    padding: 0.2rem 0.7rem;
+    /* padding: 0.2rem 0.7rem; */
   }
 
   .input-btn,
