@@ -260,7 +260,7 @@ body {
   }
   .input {
     height: 5.5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .select-icon {
@@ -270,7 +270,7 @@ body {
   .options {
     height: 4.5rem;
     font-size: 1.3rem;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0.7rem;
   }
 
   .input-btn,
@@ -282,11 +282,8 @@ body {
     padding: 1.2rem 1.5rem;
   }
 
+  .btn-icons,
   .todo-list-list__texts {
-    font-size: 1.7rem;
-  }
-
-  .btn-icons {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 }
