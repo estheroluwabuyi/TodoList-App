@@ -2,8 +2,6 @@
 
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
-const selectOptionsBar = document.querySelector(".options");
-const selectOptionsBarInput = document.querySelectorAll(".select-icon");
 const todoList = document.querySelector(".todo-list");
 
 form.addEventListener("submit", function (e) {
@@ -102,6 +100,49 @@ todoList.addEventListener("click", function (e) {
       storeCode();
     }, 700);
   }
+});
+
+// Options
+const selectOptionsBar = document.querySelector(".options");
+const selectOptionsBarInput = document.querySelector(".select-icon");
+
+selectOptionsBarInput.addEventListener("change", function (e) {
+  const optionsValue = selectOptionsBar.value;
+
+  // Select all todo items
+  const todoItems = todoList.querySelectorAll(".todo-list-list");
+
+  // Loop through each todo item and apply the filter
+  todoItems.forEach((todoItem) => {
+    const todoText = todoItem.querySelector(".todo-list-list__texts");
+
+    switch (optionsValue) {
+      case "Completed":
+        if (todoText.classList.contains("strikeText")) {
+          todoItem.style.display = "grid";
+        } else {
+          todoItem.style.display = "none";
+        }
+
+        break;
+
+      case "Uncompleted":
+        if (todoText.classList.contains("strikeText")) {
+          todoItem.style.display = "none";
+        } else {
+          todoItem.style.display = "grid";
+        }
+        break;
+
+      case "All":
+        todoItem.style.display = "grid";
+        break;
+
+      default:
+        todoItem.style.display = "grid";
+        break;
+    }
+  });
 });
 
 // localStorage.clear();
