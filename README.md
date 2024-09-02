@@ -55,17 +55,8 @@ This is a simple yet functional To-Do List application built with vanilla JavaSc
 - **Saving Tasks:** When tasks are added, edited, or deleted, the `storeCode` function updates `localStorage` with the current list of tasks.
 - **Loading Tasks:** On page load, the `loadCode` function retrieves tasks from `localStorage` and populates the list.
 
-## Contributing
-
-If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes and commit them (`git commit -am 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Create a new Pull Request.
-
 ## Preview
+[https://todo-list-app-thecodegal-estheroluwabuyis-projects.vercel.app/](https://todo-list-app-thecodegal-estheroluwabuyis-projects.vercel.app/)
 
 ## License
 
